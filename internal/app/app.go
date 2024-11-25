@@ -69,6 +69,3 @@ type App struct {
 	ConsensusKeeper consensuskeeper.Keeper
 }
 
-func (app *App) Name() string {
-	return app.BaseApp.Name()
-}

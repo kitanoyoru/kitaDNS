@@ -86,15 +86,15 @@ func setAddressPrefixes() {
 
 	config.SetAddressVerifier(func(bytes []byte) error {
 		if len(bytes) == 0 {
-			return errors.Wrap(sdkerrors.ErrUnknownAddress, "addresses cannot be empty")
+			return sdkerrors.ErrUnknownAddress
 		}
 
 		if len(bytes) > sdkaddress.MaxAddrLen {
-			return errors.Wrapf(sdkerrors.ErrUnknownAddress, "address max length is %d, got %d", sdkaddress.MaxAddrLen, len(bytes))
+			return sdkerrors.ErrUnknownAddress
 		}
 
 		if len(bytes) != 20 && len(bytes) != 32 {
-			return errors.Wrapf(sdkerrors.ErrUnknownAddress, "address length must be 20 or 32 bytes, got %d", len(bytes))
+			return sdkerrors.ErrUnknownAddress
 		}
 
 		return nil
